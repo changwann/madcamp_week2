@@ -1,0 +1,38 @@
+<h5>게시물 목록</h5>
+<h3>반갑습니다, {{name}}님!</h3>
+<p>{{name}}님이 쓰신 게시물 목록입니다.</p>
+{{#if stories}}
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>제목</th>
+        <th>날짜</th>
+        <th>상태</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each stories}}
+        <tr>
+          <td><a href="/stories/{{_id}}">{{title}}</a></td>
+          <td>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</td>
+          <td><span class="dash-status">{{status}}</span></td>
+          <td>
+            <a href="/stories/edit/{{_id}}" class="btn btn-float">
+              <i class="fas fa-edit"></i>
+            </a>
+
+            <form action="/stories/{{_id}}" method="POST" id="delete-form">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="btn red">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>You have not created any stories</p>
+{{/if}}
