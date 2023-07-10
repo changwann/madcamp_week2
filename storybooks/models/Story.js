@@ -23,6 +23,10 @@ const StorySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  likes: {
+    type: Array,
+    default: ["dkdk","fjfj","ddi"],
+  }
 })
 
 module.exports = mongoose.model('Story', StorySchema)

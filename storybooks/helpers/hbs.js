@@ -40,4 +40,12 @@ module.exports = {
         ' selected="selected"$&'
       );
   },
+  gt: function (a, b, options) {
+    if (a > b) {
+      return a;
+    } else {
+      return b;
+    }
+  },
+  
 };

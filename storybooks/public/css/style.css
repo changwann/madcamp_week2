@@ -37,3 +37,12 @@ p {
 .search-form {
   margin: 70px 0;
 }
+
+.heart-icon {
+  color: white; /* Initial color */
+  cursor: pointer;
+}
+
+.heart-icon.active {
+  color: black; /* Color when pressed */
+}
