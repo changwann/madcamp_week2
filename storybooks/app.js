@@ -16,8 +16,10 @@ dotenv.config({ path: './config/config.env' })
 // Passport config
 require('./config/passport')(passport)
 
+//connect database(mongoDB)
 connectDB()
 
+//initialize app
 const app = express()
 
 // Body parser
