@@ -7,8 +7,8 @@
       <tr>
         <th>제목</th>
         <th>날짜</th>
-        <th>상태</th>
-        <th></th>
+        <th>댓글수</th>
+        <th>수정/삭제</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
         <tr>
           <td><a href="/stories/{{_id}}">{{title}}</a></td>
           <td>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</td>
-          <td><span class="dash-status">{{status}}</span></td>
+          <td><span class="dash-status">{{comments.length}}</span></td>
           <td>
             <a href="/stories/edit/{{_id}}" class="btn btn-float">
               <i class="fas fa-edit"></i>
@@ -34,5 +34,5 @@
     </tbody>
   </table>
 {{else}}
-  <p>You have not created any stories</p>
+  <p>첫 게시글을 작성해보세요!</p>
 {{/if}}

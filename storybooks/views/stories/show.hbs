@@ -12,8 +12,31 @@
         {{{story.body}}}
       </div>
     </div>
+
+    <div class="card-content">
+      <h4>댓글</h4>
+
+      {{#each story.comments}}
+        <div class="card">
+          <div class="card-content">
+            <p>{{{this}}} - 익명의 사용자</p>
+            <!--<small>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</small>-->
+          </div>
+        </div>
+      {{/each}}
+
+      {{#if user}}
+        <form action="/stories/{{story._id}}/comments" method="post">
+          <textarea name="body" required></textarea>
+          <button type="submit">댓글 작성</button>
+        </form>
+      {{/if}}
+    </div>
+
   </div>
-  {{!--
+</div>
+
+{{!--
     <div class="col s12 m4">
         <div class="card center-align">
             <div class="card-content">
@@ -25,5 +48,4 @@
             </div>
         </div>
     </div>
-    --}}
-</div>
+--}}
