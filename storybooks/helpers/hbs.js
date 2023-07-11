@@ -42,12 +42,18 @@ module.exports = {
   },
   likeBtn: function (array, user, storyId) {
     console.log(array)
+    console.log(typeof(array))
     console.log("-------------------")
     console.log(user._id.toString())
     if (array.includes(user._id.toString())) {
-      return `<div><i class="fas fa-heart"></i>You Liked this page!</div>`;
+      return `<div> 좋아요를 누른 페이지입니다!</div>`;
     } else {
-      return `<form action="/stories/${storyId}/likes" method="post"><button><i class="far fa-heart"></i>Click to Like</button></form>`;
+      return `<form action="/stories/${storyId}/likes" method="post">
+      <button style="background-color: red darken -1;">
+        <i class="far fa-heart"></i> 좋아요
+      </button>
+    </form>`;
     }
   },
 };
+

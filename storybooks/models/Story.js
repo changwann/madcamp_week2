@@ -28,11 +28,10 @@ const StorySchema = new mongoose.Schema({
       type: String,
     },
   ],
-  likes: [
-    {
-      type: String,
-    },
-  ]
+  likes: {
+    type: Array,
+    default: []
+  },
   
 });
 
