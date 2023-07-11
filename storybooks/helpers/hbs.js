@@ -43,9 +43,7 @@ module.exports = {
   likeBtn: function (array, user, storyId) {
     console.log(array)
     console.log("-------------------")
-    console.log(user._id)
     console.log(user._id.toString())
-    console.log(typeof(user._id))
     if (array.includes(user._id.toString())) {
       return `<div><i class="fas fa-heart"></i>You Liked this page!</div>`;
     } else {
