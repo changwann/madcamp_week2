@@ -46,7 +46,9 @@ module.exports = {
     console.log("-------------------")
     console.log(user._id.toString())
     if (array.includes(user._id.toString())) {
-      return `<div> 좋아요를 누른 페이지입니다!</div>`;
+      return `<div><form action="/stories/${storyId}/likes/delete" method="post">
+      <button style="background-color: red darken -1;">좋아요취소
+      </button>  좋아요를 누른 페이지입니다!</form> </div>`;
     } else {
       return `<form action="/stories/${storyId}/likes" method="post">
       <button style="background-color: red darken -1;">

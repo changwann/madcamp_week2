@@ -211,5 +211,23 @@ router.post("/:id/likes", ensureAuth, async (req, res) => {
   }
 });
 
+router.post("/:id/likes/delete", ensureAuth, async (req, res) => {
+  try {   
+    let story = await Story.findById(req.params.id);
+    console.log(typeof(req.user.id))
+
+    const indexToDelete = story.likes.indexOf(String(req.user.id)); // index of the element to delete
+    story.likes.splice(indexToDelete, 1); // Deletes one element at the specified index
+    
+    await story.save();
+    console.log(story.likes);
+    console.log(req.user.id)
+    res.redirect(`/stories/${req.params.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/error");
+  }
+});
+
 
 module.exports = router;
