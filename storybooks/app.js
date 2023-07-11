@@ -48,6 +48,9 @@ const {
   truncate,
   editIcon,
   select,
+  ifIn,
+  contains,
+  likeBtn,
 } = require("./helpers/hbs");
 
 // Handlebars
@@ -60,6 +63,9 @@ app.engine(
       truncate,
       editIcon,
       select,
+      ifIn,
+      contains,
+      likeBtn,
     },
     defaultLayout: "main",
     extname: ".hbs",
