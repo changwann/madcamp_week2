@@ -1,22 +1,27 @@
 <h5>게시물 목록</h5>
 <h3>반갑습니다, {{name}}님!</h3>
 <p>{{name}}님이 쓰신 게시물 목록입니다.</p>
-{{#if stories}}
+{{#if reversedStories}}
   <table class="striped">
     <thead>
       <tr>
         <th>제목</th>
         <th>날짜</th>
+        <th><i class="fas fa-heart"></i></th>
         <th>댓글수</th>
         <th>수정/삭제</th>
       </tr>
     </thead>
     <tbody>
-      {{#each stories}}
+      {{#each reversedStories}}
         <tr>
           <td><a href="/stories/{{_id}}">{{title}}</a></td>
           <td>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</td>
+          <td><span class="dash-status">{{#if
+                likes
+              }}{{likes.length}}{{else}}0{{/if}}</span></td>
           <td><span class="dash-status">{{comments.length}}</span></td>
+
           <td>
             <a href="/stories/edit/{{_id}}" class="btn btn-float">
               <i class="fas fa-edit"></i>

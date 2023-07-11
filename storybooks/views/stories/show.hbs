@@ -11,23 +11,36 @@
           }}</span>
         {{{story.body}}}
       </div>
+      <hr style="border-top: 1px solid rgb(214, 214, 214);" />
+      <div class="section" style="padding-left: 25px;">
+        <div class="card-image">
+          <div style="color:crimson;"><i class="fas fa-heart"></i>
+            좋아요
+            {{#if story.likes}}{{story.likes.length}}{{else}}0{{/if}}개</div>
+        </div>
+        {{{likeBtn story.likes user story._id}}}
+      </div>
     </div>
 
     <div class="card-content">
-      <h4>댓글</h4>
-
+      <h5>댓글</h5>
       {{#each story.comments}}
         <div class="card">
           <div class="card-content">
-            <p>{{{this}}} - 익명의 사용자</p>
-            <!--<small>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</small>-->
+            <p>{{{this.body}}}</p>
+            {{#if_eq this.user ../story.user._id}}
+              <p style="color: Crimson"><b>- 글쓴이</b></p>
+            {{else}}
+              <p><b>- 익명의 사용자 {{getIndex ../story.users this.user}}</b></p>
+            {{/if_eq}}
+            <small>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</small>
           </div>
         </div>
       {{/each}}
 
       {{#if user}}
         <form action="/stories/{{story._id}}/comments" method="post">
-          <textarea name="body" required></textarea>
+          <textarea name="body" rows="2" required></textarea>
           <button type="submit">댓글 작성</button>
         </form>
       {{/if}}
@@ -35,17 +48,3 @@
 
   </div>
 </div>
-
-{{!--
-    <div class="col s12 m4">
-        <div class="card center-align">
-            <div class="card-content">
-                <span class="card-title">{{story.user.displayName}}</span>
-                <img src="{{story.user.image}}" class="circle responsive-img img-small">
-            </div>
-            <div class="card-action">
-                <a href="/stories/user/{{story.user._id}}">More From {{story.user.firstName}}</a>
-            </div>
-        </div>
-    </div>
---}}

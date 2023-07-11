@@ -28,7 +28,7 @@ router.post("/", ensureAuth, async (req, res) => {
 // @route   GET /stories
 router.get("/", ensureAuth, async (req, res) => {
   try {
-    const stories = await Story.find({ status: "public" })
+    const stories = await Story.find()
       .populate("user")
       .sort({ createdAt: "desc" })
       .lean();
@@ -46,19 +46,16 @@ router.get("/", ensureAuth, async (req, res) => {
 // @route   GET /stories/:id
 router.get("/:id", ensureAuth, async (req, res) => {
   try {
-    let story = await Story.findById(req.params.id).populate("user").lean();
+    let story = await Story.findById(req.params.id)
+      .populate("user")
+      .populate("comments")
+      .lean();
 
     if (!story) {
       return res.render("error/404");
     }
 
-    if (story.user._id != req.user.id && story.status == "private") {
-      res.render("error/404");
-    } else {
-      res.render("stories/show", {
-        story,
-      });
-    }
+    res.render("stories/show", { story });
   } catch (err) {
     console.error(err);
     res.render("error/404");
@@ -92,15 +89,18 @@ router.get("/edit/:id", ensureAuth, async (req, res) => {
 
 // @desc    Update story
 // @route   PUT /stories/:id
-router.put(":id", ensureAuth, async (req, res) => {
+router.put("/:id", ensureAuth, async (req, res) => {
   try {
-    let story = await Story.findById(req.params.id).populate("comments").lean();
+    let story = await Story.findById(req.params.id)
+      .populate("user")
+      .populate("comments")
+      .lean();
 
     if (!story) {
       return res.render("error/404");
     }
 
-    if (story.user != req.user.id) {
+    if (story.user._id != req.user.id) {
       res.redirect("/stories");
     } else {
       story = await Story.findOneAndUpdate({ _id: req.params.id }, req.body, {
@@ -144,7 +144,6 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
   try {
     const stories = await Story.find({
       user: req.params.userId,
-      status: "public",
     })
       .populate("user")
       .lean();
@@ -164,7 +163,6 @@ router.get("/search/:query", ensureAuth, async (req, res) => {
   try {
     const stories = await Story.find({
       title: new RegExp(req.query.query, "i"),
-      status: "public",
     })
       .populate("user")
       .sort({ createdAt: "desc" })
@@ -184,11 +182,47 @@ router.post("/:id/comments", ensureAuth, async (req, res) => {
     });
     await newComment.save();
     let story = await Story.findById(req.params.id);
-    story.comments.push(newComment.body);
+    story.comments.push(newComment._id);
+
+    if (req.user.id != story.user._id && !story.users.includes(req.user.id)) {
+      story.users.push(req.user.id);
+    }
+    //story = await Story.findById(req.params.id).populate("comments");
     await story.save();
-    console.log(newComment);
-    console.log("--------------------------");
-    console.log(story.comments);
+
+    res.redirect(`/stories/${req.params.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/error");
+  }
+});
+
+router.post("/:id/likes", ensureAuth, async (req, res) => {
+  try {
+    let story = await Story.findById(req.params.id);
+    console.log(typeof req.user.id);
+    story.likes.push(String(req.user.id));
+    await story.save();
+    console.log(story.likes);
+    console.log(req.user.id);
+    res.redirect(`/stories/${req.params.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/error");
+  }
+});
+
+router.post("/:id/likes/delete", ensureAuth, async (req, res) => {
+  try {
+    let story = await Story.findById(req.params.id);
+    console.log(typeof req.user.id);
+
+    const indexToDelete = story.likes.indexOf(String(req.user.id)); // index of the element to delete
+    story.likes.splice(indexToDelete, 1); // Deletes one element at the specified index
+
+    await story.save();
+    console.log(story.likes);
+    console.log(req.user.id);
     res.redirect(`/stories/${req.params.id}`);
   } catch (error) {
     console.error(error);

@@ -1,4 +1,4 @@
-<h2>몰입캠프 대나무숲</h2>
+<h3>몰입캠프 대나무숲</h2>
 <ul class="search-form">
     <li>    
         <form id="search-site"  action='/stories/search/:query' method='get'>
@@ -9,7 +9,7 @@
                     <label class="label-icon" for="search">
                     </label>
                  </div>
-                <button type="submit" class="input-group-addon btn red darken-1">search</button>
+                <button type="submit" class="input-group-addon btn red darken-1">검색</button>
             </div>
         </form>  
     </li>   
@@ -24,13 +24,10 @@
             <div class="card-content center-align">
                 <h5>{{title}}</h5>
                 <p>{{stripTags (truncate body 150)}}</p>
-                <br>
-                {{!--
                 <div class="chip">
-                    <img src="{{user.image}}" alt="">
-                    <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+                    <i class="fas fa-heart"></i>
+                    {{#if likes}}{{likes.length}}{{else}}0{{/if}} Likes
                 </div>
-                --}}
             
             </div>
             <div class="card-action center-align">

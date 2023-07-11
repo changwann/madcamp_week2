@@ -10,11 +10,6 @@ const StorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
-    default: "public",
-    enum: ["public", "private"],
-  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -25,9 +20,18 @@ const StorySchema = new mongoose.Schema({
   },
   comments: [
     {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
     },
   ],
+  likes: {
+    type: Array,
+    default: [],
+  },
+  users: {
+    type: Array,
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("Story", StorySchema);

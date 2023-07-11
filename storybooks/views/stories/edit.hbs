@@ -8,22 +8,9 @@
         <label for="title">제목</label>
       </div>
     </div>
-
     <div class="row">
       <div class="input-field">
-        <select id="status" name="status">
-          {{#select story.status}}
-            <option value="public" selected>Public</option>
-            <option value="private">Private</option>
-          {{/select}}
-        </select>
-        <label for="status">상태</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field">
-        <h5>Tell Us Your Story:</h5>
+        <h5>글 내용을 입력하세요.</h5>
         <textarea id="body" name="body">{{story.body}}</textarea>
       </div>
     </div>
