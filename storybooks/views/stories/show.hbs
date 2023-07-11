@@ -11,6 +11,12 @@
           }}</span>
         {{{story.body}}}
       </div>
+      <div class="card-content" style="padding-left: 25px;">
+        <div class="card-image">
+            <div style="color:crimson;"><i class="fas fa-heart"></i> 좋아요 {{story.likes.length}}개</div>
+            {{{likeBtn story.likes user story._id}}}
+        </div>
+      </div>
     </div>
 
     <div class="card-content">

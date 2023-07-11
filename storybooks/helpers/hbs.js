@@ -40,4 +40,20 @@ module.exports = {
         ' selected="selected"$&'
       );
   },
+  likeBtn: function (array, user, storyId) {
+    console.log(array)
+    console.log(typeof(array))
+    console.log("-------------------")
+    console.log(user._id.toString())
+    if (array.includes(user._id.toString())) {
+      return `<div> 좋아요를 누른 페이지입니다!</div>`;
+    } else {
+      return `<form action="/stories/${storyId}/likes" method="post">
+      <button style="background-color: red darken -1;">
+        <i class="far fa-heart"></i> 좋아요
+      </button>
+    </form>`;
+    }
+  },
 };
+
