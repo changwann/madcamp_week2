@@ -9,7 +9,7 @@
                     <label class="label-icon" for="search">
                     </label>
                  </div>
-                <button type="submit" class="input-group-addon btn red darken-1">search</button>
+                <button type="submit" class="input-group-addon btn red darken-1">검색</button>
             </div>
         </form>  
     </li>   
@@ -32,7 +32,7 @@
                 --}}
                 <div class="chip">
                     <i class="fas fa-heart"></i>
-                    {{likes.length}} Likes
+                    {{#if likes}}{{likes.length}}{{else}}0{{/if}} Likes
                 </div>
             
             </div>

@@ -12,8 +12,8 @@ const StorySchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'public',
-    enum: ['public', 'private'],
+    default: "public",
+    enum: ["public", "private"],
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -30,9 +30,8 @@ const StorySchema = new mongoose.Schema({
   ],
   likes: {
     type: Array,
-    default: []
+    default: [],
   },
-  
 });
 
 module.exports = mongoose.model("Story", StorySchema);

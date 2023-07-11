@@ -186,9 +186,6 @@ router.post("/:id/comments", ensureAuth, async (req, res) => {
     let story = await Story.findById(req.params.id);
     story.comments.push(newComment.body);
     await story.save();
-    console.log(newComment);
-    console.log("--------------------------");
-    console.log(story.comments);
     res.redirect(`/stories/${req.params.id}`);
   } catch (error) {
     console.error(error);

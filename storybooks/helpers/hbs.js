@@ -41,6 +41,7 @@ module.exports = {
       );
   },
   likeBtn: function (array, user, storyId) {
+<<<<<<< HEAD
     console.log(array)
     console.log(typeof(array))
     console.log("-------------------")
@@ -49,6 +50,14 @@ module.exports = {
       return `<div><form action="/stories/${storyId}/likes/delete" method="post">
       <button style="background-color: red darken -1;">좋아요취소
       </button>  좋아요를 누른 페이지입니다!</form> </div>`;
+=======
+    console.log(array);
+    console.log(typeof array);
+    console.log("-------------------");
+    console.log(user._id.toString());
+    if (array !== undefined && array.includes(user._id.toString())) {
+      return `<div> 좋아요를 누른 페이지입니다!</div>`;
+>>>>>>> 01e9ae68774a2e4f49544cf6c89d3f4dae1fb81a
     } else {
       return `<form action="/stories/${storyId}/likes" method="post">
       <button style="background-color: red darken -1;">
@@ -58,4 +67,3 @@ module.exports = {
     }
   },
 };
-

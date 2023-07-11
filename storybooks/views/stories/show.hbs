@@ -14,7 +14,10 @@
       <hr style="border-top: 1px solid rgb(214, 214, 214);">
       <div class="section" style="padding-left: 25px;">
         <div class="card-image">
-            <div style="color:crimson;margin-bottom:10px;"><i class="fas fa-heart"></i> 좋아요 {{story.likes.length}}개</div>           
+          <div style="color:crimson;"><i class="fas fa-heart"></i>
+            좋아요
+            {{#if story.likes}}{{story.likes.length}}{{else}}0{{/if}}개</div>
+          {{{likeBtn story.likes user story._id}}}
         </div>
         {{{likeBtn story.likes user story._id}}}
       </div>
