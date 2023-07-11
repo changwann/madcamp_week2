@@ -36,7 +36,7 @@
 ## :pushpin: 개발 환경
 
 Frontend: handlerbars, CSS, kotlin   
-Backend: Node.js(express)
+Backend: Node.js(express)  
 DataBase: MongoDB(mongoose)  
 IDE: VScode, Android Studio
 
