@@ -42,7 +42,6 @@ module.exports = {
   },
   likeBtn: function (array, user, storyId) {
     console.log(array)
-    console.log(typeof(array))
     console.log("-------------------")
     console.log(user._id.toString())
     if (array.includes(user._id.toString())) {
