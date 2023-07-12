@@ -129,7 +129,7 @@ router.delete("/:id", ensureAuth, async (req, res) => {
       return res.render("error/404");
     }
 
-    if (story.user != req.user.id) {
+    if (story.user._id != req.user.id) {
       res.redirect("/stories");
     } else {
       await Story.remove({ _id: req.params.id });
