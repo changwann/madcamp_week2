@@ -63,4 +63,7 @@ module.exports = {
   getIndex: function (array, item, options) {
     return array.indexOf(item.toString()) + 1;
   },
+  lookup: function (obj, property) {
+    return obj[property];
+  },
 };

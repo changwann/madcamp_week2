@@ -53,6 +53,8 @@ const {
   likeBtn,
   if_eq,
   getIndex,
+  eq,
+  lookup,
 } = require("./helpers/hbs");
 
 // Handlebars
@@ -70,6 +72,7 @@ app.engine(
       likeBtn,
       if_eq,
       getIndex,
+      lookup,
     },
     defaultLayout: "main",
     extname: ".hbs",

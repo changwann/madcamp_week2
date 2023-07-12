@@ -26,9 +26,12 @@
                 <p>{{stripTags (truncate body 150)}}</p>
                 <div class="chip">
                     <i class="fas fa-heart"></i>
-                    {{#if likes}}{{likes.length}}{{else}}0{{/if}} Likes
+                    {{#if likes}}{{likes.length}}{{else}}0{{/if}}
                 </div>
-            
+                <div class="chip">
+                    <i class="fas fa-comment"></i>
+                    {{#if comments}}{{comments.length}}{{else}}0{{/if}}
+                </div>
             </div>
             <div class="card-action center-align">
                 <a href="/stories/{{_id}}" class="btn grey">자세히 보기</a>

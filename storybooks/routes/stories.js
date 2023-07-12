@@ -120,7 +120,10 @@ router.put("/:id", ensureAuth, async (req, res) => {
 // @route   DELETE /stories/:id
 router.delete("/:id", ensureAuth, async (req, res) => {
   try {
-    let story = await Story.findById(req.params.id).populate("comments").lean();
+    let story = await Story.findById(req.params.id)
+      .populate("user")
+      .populate("comments")
+      .lean();
 
     if (!story) {
       return res.render("error/404");
@@ -189,6 +192,50 @@ router.post("/:id/comments", ensureAuth, async (req, res) => {
     }
     //story = await Story.findById(req.params.id).populate("comments");
     await story.save();
+
+    res.redirect(`/stories/${req.params.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect("/error");
+  }
+});
+
+router.delete("/:id/comments/:commentId", ensureAuth, async (req, res) => {
+  try {
+    let story = await Story.findById(req.params.id);
+    if (!story) {
+      return res.status(404).send("Story not found");
+    }
+
+    // 찾아낸 story에서 해당 commentId를 가진 comment를 찾는다.
+    const commentId = story.comments.find(
+      (id) => id.toString() === req.params.commentId
+    );
+
+    // 해당 댓글이 존재하지 않는 경우
+    if (!commentId) {
+      return res.status(404).send("Comment not found");
+    }
+
+    // Comment collection에서 해당 comment를 찾는다.
+    const comment = await Comment.findById(commentId);
+
+    // 해당 댓글이 로그인한 사용자의 것이 아닌 경우
+    if (comment.user.toString() !== req.user.id) {
+      return res
+        .status(403)
+        .send("You do not have permission to delete this comment");
+    }
+
+    // comment를 story에서 제거한다.
+    const commentIndex = story.comments.indexOf(commentId);
+    if (commentIndex !== -1) {
+      story.comments.splice(commentIndex, 1);
+    }
+    await story.save();
+
+    // 실제 Comment collection에서도 해당 comment를 제거한다.
+    await Comment.findByIdAndRemove(req.params.commentId);
 
     res.redirect(`/stories/${req.params.id}`);
   } catch (error) {

@@ -34,6 +34,12 @@
               <p><b>- 익명의 사용자 {{getIndex ../story.users this.user}}</b></p>
             {{/if_eq}}
             <small>{{formatDate createdAt "YYYY년 M월 D일 h:mm:ss a"}}</small>
+            {{#if_eq this.user (lookup ../user "_id")}}
+            <form action="/stories/{{../story._id}}/comments/{{this._id}}" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit"><i class="fas fa-trash"></i></button>
+            </form>
+            {{/if_eq}}
           </div>
         </div>
       {{/each}}
