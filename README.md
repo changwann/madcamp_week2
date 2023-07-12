@@ -35,98 +35,90 @@
 
 ## :pushpin: 개발 환경
 
-Frontend: handlerbars, CSS, kotlin   
-Backend: Node.js(express)  
-DataBase: MongoDB(mongoose)  
+Frontend: Handlerbars, CSS, Kotlin   
+Backend: Node.js (express)  
+DataBase: MongoDB (mongoose)  
 IDE: VScode, Android Studio
-
-----여기 밑에서부터 수정 필요---  
 minSdk: 24  
 targetSdk: 33  
-Hardware: Galaxy S7 (Android 8.0.0)
+Hardware: Galaxy S10e (Android 11)
 
 ## :pushpin: 역할 분담
 
-- 공통: 탭 레이아웃 작성  
-- 김창완: 탭1, 탭3  
-- 엄창용: 탭2, git 사용법 공부  
+- 공통: 서버 구축, 데이터베이스 구축, 게시판 기능
+- 김창완: 댓글 기능  
+- 김하진: 좋아요 기능
 
 
 ## :pushpin: 앱 설명
 
-### :zero: 권한 허용 팝업
+대학생 커뮤니티 앱 "에브리타임"을 모티브로, 익명게시판 앱을 만들었다.  
 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/645f6306-5376-4efe-83e2-0e3dd0b3b654" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/37593bc2-8e64-480a-9322-c5abc0e31955" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/57d33a5e-688b-4bd3-9b4c-ef91ab1347c1" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/09819b3f-5ae6-4aaa-b947-a5f11036a8fb" width="30%" height="30%">  
+
+1. 앱 "mad time"을 실행하면 앱 내에서 Chrome Custom Tab이 열리며 몰브리타임 서비스 페이지로 이동한다. 첫 화면에는 간단하게 서비스를 소개하는 텍스트와 구글 로그인 버튼이 있다.  
+2. 구글 로그인 버튼을 누르면 Google OAuth2.0을 이용한 구글 로그인 서비스가 진행되고, 원하는 구글 계정을 클릭하거나 새로 로그인해서 몰브리타임 서비스를 이용할 수 있다.
+3. 로그인에 정상적으로 성공하면 구글 계정에 등록된 이름(First Name)으로 인사를 건네는 화면으로 서비스가 시작된다. 
+
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/ba79ab75-3cad-4ba8-a260-1a37d216226e" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/d1b16520-518f-4765-89a6-f40b1bca4c8a" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/ea01f637-88d3-4cd2-a7f7-c77c443f6bee" width="30%" height="30%">
   
-앱을 실행하기 전, 연락처 권한을 허용 받기 위한 팝업 제시.
-사용자가 거부할 경우 앱 실행을 종료한다.
+4. 왼쪽 상단의 메뉴바를 누르면 탭이 열리며, 총 3개의 메뉴가 있다. 뒤로가기 버튼이나 탭 화면 밖을 누르면 탭이 닫히며, 오른쪽 아래 큰 빨강 더하기 버튼을 누르면 새로운 게시글을 작성할 수 있다.
+5. 제목과 내용을 작성할 수 있는 화면으로 전환되고, 본문 내용은 진한 글씨·기울임·취소선·링크 등의 기능을 이용할 수 있다. "게시" 버튼을 누르면 대나무숲 게시판에 글이 올라가며, "취소" 버튼을 누를 경우 쓰고 있던 게시글 내용이 저장되지 않고 취소된다.
+6. 정상적으로 게시글이 등록됐을 경우, "내 게시물 목록" 탭에서 자신이 쓴 게시물의 목록을 최신 순으로 확인할 수 있다.
 
-### :one: 탭1 : 연락처
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/d4a79ed6-235b-4489-9c98-d89427326bc6" width="30%" height="30%">
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/627a9ebd-4466-46b7-92cc-f774224304ed" width="30%" height="30%">
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/3dd97a7f-64b8-4402-b343-9f9b019ed173" width="30%" height="30%">   
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/8bd99e87-29a4-42c5-97c4-e2a6c30a1154" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/15d233ef-a94c-4c65-ad2d-1a1a24ccb183" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/317db785-22c5-43ac-8d0d-d929221362f2" width="30%" height="30%">
 
-1. 휴대폰에 저장되어 있는 연락처를 List 형태로 저장해서 화면에 보여줌. (ListView 사용)
-2. 짧게 누를 시, 해당 연락처로 전화를 바로 걸 수 있는 다이얼 화면으로 전환.  
-3. 길게 누를 시, 해당 연락처를 삭제. (위 사진에서는 Jamie 연락처를 삭제함.)
+7. 왼쪽 상단의 메뉴바에서 "몰입캠프 대나무숲" 탭을 누르면, 다른 사람이 쓴 글도 확인할 수 있는 탭으로 이동하게 된다. 여기서 자신이 쓴 글의 오른쪽 상단에는 게시글을 수정할 수 있는 버튼이 뜨게 되며, 최신 글이 위쪽으로 정렬된다. 각 글마다 좋아요수와 댓글수를 확인할 수 있으며, 원하는 글의 "자세히 보기" 버튼을 누르면 해당 글의 탭으로 이동하게 된다.  
+8. 원하는 게시글의 제목과 본문뿐만 아니라 작성된 시간까지 확인 가능하다.
+9. 댓글은 모두 익명으로 달린다. 다만, 글쓴이와 익명의 사용자 1, 익명의 사용자 2, ... 등의 최소한의 구분 시스템을 구현했다. (에브리타임의 댓글 기능 중 익명 표시 시스템과 동일한 매커니즘이다. 같은 사용자가 댓글을 여러 번 달면 같은 번호로 찍힌다.) 그리고 자신이 쓴 댓글에만 뜨는 작은 삭제 아이콘을 누르게 되면 댓글이 삭제된다.
 
-앱을 통한 연락처 수정이 있을 때마다 ListView를 새로고침하여 실시간으로 변경된 정보 확인 가능.  
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/6aa1c4a6-5712-4f02-9af9-657ec962e8ff" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/c2a6e005-48ab-4307-9f16-41c29b4a9b1a" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/498c060d-1a70-4d67-9df0-f5be7658bb27" width="30%" height="30%">  
 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/792c9c0c-5707-48c0-bc87-4fad1e1821f7" width="30%" height="30%">   
+10. 좋아요 기능은 한 사람 당 같은 글에는 한 번만 누를 수 있게 구현했다. 좋아요를 누르게 될 경우, 좋아요 버튼이 좋아요 취소 버튼으로 바뀌며 여기서 한 번 더 누르면 좋아요가 취소된다.
+11. 만약 다른 사람이 내 글에 좋아요나 댓글을 달게 되면,
+12. "내 게시물 목록" 메뉴에서 좋아요수와 댓글수를 확인할 수 있다.
 
-또한, 연락처 수정으로 인해 연락처 목록 순서가 바뀌더라도 알맞게 전화가 걸리는 모습을 확인 가능.
 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/32c0abd6-4011-4135-ac8f-cf40c10e2529" width="30%" height="30%">  
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/5ac768f4-c44f-4f06-b545-47adc5a2cc13" width="30%" height="30%">  
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/7dbda3ff-571d-4509-8e14-86ff89ba94b7" width="30%" height="30%">  
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/9f01c2a4-d715-4555-b276-cbf23a2794dd" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/782af8b2-cdee-4858-a62b-2099ec268681" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/0e134f74-5b11-432e-a028-fc1a75ec95d0" width="30%" height="30%">
 
-상단의 입력 칸에 이름과 전화번호를 쓰고 "연락처 추가" 버튼을 누르면 해당 정보로 연락처 추가.
-전화번호를 적는 EditText는 편의를 위해 숫자만 입력하더라도 010-xxxx-xxxx 형식으로 알아서 맞춰지게끔 구현함.
+13. "몰입캠프 대나무숲"에서 수정 아이콘 버튼을 누르거나, 내 게시물 목록에서 수정 아이콘 버튼을 누르게 되면 게시글 수정 페이지로 이동하게 된다. 제목이나 내용을 수정한 "저장" 버튼을 누르면 해당 게시글의 좋아요와 댓글은 유지된 채 수정 사항만 변경되고, "취소" 버튼을 누를 경우 수정 사항이 저장되지 않고 취소된다.
+14. "저장" 버튼을 눌렀을 경우 위 사진과 같이 본문 내용이 잘 수정된다.
+15. "내 게시물 목록"에서 삭제 아이콘 버튼을 누르게 되면 해당 게시글은 모든 메뉴에서 삭제되게 된다.
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/41311ba5-a009-4984-8d4e-6df94661aa05" width="30%" height="30%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/d7c14147-0a2d-42d8-8ced-e9add3ee89ca" width="30%" height="30%">  
 
-- 연락처 프로필 사진, 메모, 이메일 등 더 다양한 기능을 구현해야 함.
-- EditText와 Button의 width를 pixel 단위가 아닌 weight 비율로 구현해야 함. 
+16. 삭제된 게시글은 "몰입캠프 대나무숲"에서도 삭제된다.
+17. 왼쪽 상단의 메뉴바에서 "로그아웃"을 누를 경우, 맨 처음 화면으로 돌아가게 되며 같은 계정으로 로그인하게 될 경우 해당 계정으로 했던 모든 활동들을 이어서 할 수 있다.
 
-### :two: 탭2 : 갤러리
 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/34a210dd-fdcc-4369-ac27-932703f38278" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/8621ee9b-3fac-46b0-9942-ace50f8579a7" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/949e1712-6d28-4271-b317-97f6db09179b" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/98b2cf47-8bde-4a96-ba77-34b64bb39321" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/c2b836d9-b46a-4e08-9d35-09ecd3c1c53b" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/45eb5ec4-40e3-4797-b8e5-7aff0db94471" width="30%" height="30%"> 
 
-1. "사진" 탭을 누르면 빈 화면으로 시작.
-2. "불러오기" 버튼을 누르면 휴대폰 내부저장소에서 사진 파일을 고를 수 있음. 
-3. "포토" 버튼을 누르면 휴대폰 갤러리에서 사진을 선택할 수 있음.
-4. 선택된 사진은 갤러리 형태로 화면에 나타남. (GridView 사용)
-5. 메인 화면에서 원하는 사진을 한 번 더 누르면, 해당 사진 탭이 나옴.
-6. "삭제" 버튼을 누르고 삭제를 원하는 사진을 누르면 해당 사진은 메인 화면에서 없어짐.
+### 부가 설명
 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/eda492ae-b154-4752-a908-c4bb82a8f976" width="30%" height="30%"> 
+- Webview는 Google이 보안 상의 이유를 OAuth 사용을 제한해두어, Chrome Custom Tabs를 활용했다.
+- Google Cloud redirect URL로 원격 서버 주소(http://172.xx.x.xxx) 를 직접 등록할 수 없어 무료 도메인 주소(http://rlagkwls.duckdns.org) 를 발급 받아 등록했다.
 
-7. 사진 추가는 원하는 만큼 가능함.
- 
-- 앱을 재실행했을 때 갤러리가 초기화되는 문제 해결해야 함. -> SQLite로 구현 시도 중  
+### 참고 자료
 
-### :three: 탭3 : 국어사전
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/3dfbfcd0-49ca-491f-8004-0c70f150f2ee" width="30%" height="30%"> 
-<img src = "https://github.com/changwann/madcamp_week1/assets/122224659/21f38882-498d-4a33-b99d-944efc4b103c" width="30%" height="30%">  
-
-네이버 국어사전을 연결해 사용자가 원하는 단어 검색을 할 수 있게끔 구현. (WebView 사용)  
-단, 기기가 인터넷에 연결되어 있어야 함.
-
-- 탭1, 탭2에 시간을 뺏겨 탭3를 다소 단순한 주제로 잡음. WebView는 기능 구현이 간단해서 탭3에 시간을 쏟지 못한 것이 아쉬움.
+https://www.youtube.com/watch?v=SBvmnHTQIPY  
+https://github.com/bradtraversy/storybooks
 
 ## :pushpin: 느낀 점
 
-김창완: 안드로이드 스튜디오와 java 언어를 거의 처음 다뤄봐서 우여곡절이 많았지만, 결국 과제를 해내긴 해서 뿌듯했다. 
-이해보단 우선 구현을 목표로 개발을 했는데, 이제 전체적인 느낌을 알게 됐으니 나중에는 원리 위주로 코드를 이해하고 싶다. 
-그리고 기능을 구현하기도 벅차 디자인을 소홀히 한 부분과 git이 익숙하지 않아 공동작업에 어려움을 겪은 게 많이 아쉽다.
+김창완: 팀메이트와 나 모두 개발 경험도 거의 없고, 서버와 데이터베이스를 처음 다뤄보는 거라 처음에는 정말 막막하고 절망스러웠다. 로컬 서버랑 원격 서버가 뭔지도 몰라서, 이론적인 내용을 주변 사람들한테 물어보고 인터넷 서칭으로 공부하며 조금씩 감을 잡아갔다. 그럼에도 앱을 처음부터 모두 디자인하기에는 시간이 촉박하다고 생각해서 유튜브에 공개된 게시판 예제를 중심으로 기존에 있던 앱인 "에브리타임"을 모티브 삼아 기능을 추가·수정했다. PC 환경에서 레이아웃을 디자인하다보니 모바일에서 디자인이 엉성한 것이 좀 아쉽지만, 아무것도 모른 상태에서 일주일 만에 이런 서비스를 구현했다는 것이 뿌듯하다. 이번에는 과제 마감 기한이 있다 보니 이해보단 구현을 우선시했는데, 시간이 여유로울 땐 DB 구조나 Router 작동 원리 등을 자세히 공부해보고 싶다. 또, 처음에는 React를 쓰려다가 환경 설정이 잘 되지 않아 포기했는데, 다음에 기회가 된다면 React Native나 Flutter 같은 크로스 플랫폼도 배우고 싶다.
 
-엄창용: "다시는 어플 느리다고 욕하지 않겠습니다. 다시는 어플 기능 적다고 욕하지 않겠습니다."
-      아직 못다한 문제들이 남았지만 이런 것들을 해결하고자 하는 과정에서 많이 배웠던 것 같다.
+김하진: *
 
 ## :pushpin: 팀원 연락처
 
 김창완 GIST - changwan@gm.gist.ac.kr  
-엄창용 KAIST - um8389@kaist.ac.kr
+김하진 KAIST - *@kaist.ac.kr
