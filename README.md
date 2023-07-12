@@ -106,7 +106,13 @@ Hardware: Galaxy S10e (Android 11)
 
 - Webview는 Google이 보안 상의 이유를 OAuth 사용을 제한해두어, Chrome Custom Tabs를 활용했다.
 - Google Cloud redirect URL로 원격 서버 주소(http://172.xx.x.xxx) 를 직접 등록할 수 없어 무료 도메인 주소(http://rlagkwls.duckdns.org) 를 발급 받아 등록했다.
-
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/ad0d0ca1-5c60-4751-bb80-dfa0e694af29" width="100%" height="100%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/f87c99ed-0a43-4d92-b643-3428ce0c7271" width="100%" height="100%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/d28adb1e-c53b-47d9-9c7b-292a899fab26" width="100%" height="100%">
+<img src = "https://github.com/changwann/madcamp_week2/assets/122224659/dab8c53c-1506-492d-8e88-c0ebca16b9a8" width="100%" height="100%">
+- MongoDB Collection에 저장되는 data 형식을 참고하기 위한 사진이다.
+- 게시글(Story)의 댓글(Comment) 리스트는 직접 객체로 다 저장하는 것이 아니라 ObjectId만 저장하고 *.populate() 함수를 이용하여 구현했다.
+  
 ### 참고 자료
 
 https://www.youtube.com/watch?v=SBvmnHTQIPY  
