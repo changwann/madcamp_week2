@@ -3,7 +3,7 @@
   <a href="https://github.com/othneildrew/Best-README-Template">
   </a>
 
-  <h1 align="center">:fork_and_knife: 몰브리타임 Project</h1>
+  <h1 align="center">⏰ 몰브리타임 Project</h1>
 
   <p align="center">
     KAIST 2023 여름 몰입캠프 2주차 과제 (2분반 김창완, 김하진)  
@@ -26,17 +26,21 @@
     - SDK 적용: Login 등의 기능을 SDK를 활용해서 구현. (추천: Facebook, Google, Naver, Kakao 등)
     - 공통과제 I 을 활용해도 좋고 처음부터 새로 만들어도 좋음.
     - 배우는 것이 적은 Firebase 활용은 가급적 지양하기를 권고.
-- ~~서버 기술 세미나~~ ~~✅~~
-    - ~~서버, DB 등에 관한 내용을 (검색/학습 출발점 관점에서) 간략히 소개할 예정~~
+- 서버 기술 세미나
+    - 서버, DB 등에 관한 내용을 (검색/학습 출발점 관점에서) 간략히 소개할 예정
+
+## 📌 업로드 파일 설명
+📁storybooks → Node.js로 server를 열고 MongoDB와 연결하기 위한 코드  
+📁madtime → Kotlin으로 Android에서 해당 server의 webpage를 모바일에 띄우기 위한 코드
 
 ## :pushpin: 개발 환경
 
-Frontend: hbs(=handlerbars), kotlin   
-Backend: Node.js(express), MongoDB(mongoose)
-IDE: VScode, Android Studio  
-Language: JavaScript
+Frontend: handlerbars, CSS, kotlin   
+Backend: Node.js(express)  
+DataBase: MongoDB(mongoose)  
+IDE: VScode, Android Studio
 
-----여기 밑에서부터 수정---  
+----여기 밑에서부터 수정 필요---  
 minSdk: 24  
 targetSdk: 33  
 Hardware: Galaxy S7 (Android 8.0.0)
